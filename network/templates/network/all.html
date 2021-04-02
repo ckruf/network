@@ -1,0 +1,14 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+    <h1>All posts</h1>
+    {% for post in posts %}
+        <div class="row justify-content-center">
+            <div class="col-4 post" id="post{{ post.id }}">
+                <p class="postauthor"><strong>{{ post.author }}</strong></p>
+                <p class="posttime">Posted on {{ post.created }}</p>
+                <p class="postcontent">{{ post.content }}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

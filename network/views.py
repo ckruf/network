@@ -3,12 +3,15 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from .models import User, Comment, Like, UserFollowing, Post, NewPostForm
 
 from .models import User
 
 
 def index(request):
-    return render(request, "network/index.html")
+    return render(request, "network/index.html", {
+        "postform": NewPostForm(auto_id=False),
+    })
 
 
 def login_view(request):
@@ -61,3 +64,19 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "network/register.html")
+
+def newpost(request):
+    if request.method == "POST":
+        newpostform = NewPostForm(request.POST)
+        if newpostform.is_valid():
+            p = Post(content=newpostform.cleaned_data["content"],
+                     author=request.user)
+            p.save()
+            return HttpResponseRedirect(reverse("index"))
+
+def all(request):
+    if request.method == "GET":
+        return render(request, "network/all.html", {
+            "posts": Post.objects.all(),
+            "postform": NewPostForm(auto_id=False)
+        })
