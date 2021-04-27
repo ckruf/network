@@ -1,3 +1,4 @@
+
 #newpost{
     animation-name: showpost;
     animation-duration:1s;
@@ -13,9 +14,77 @@
     cursor: default;
 }
 
+/*nav bar */
+#bar{
+    height:60px;
+    overflow-y: visible;
+}
+
+/* search button */
+#searchbtn{
+    margin-right: 10px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+/* add new post button */
+#addnew{
+    margin-top: 15px;
+}
+
+.result {
+    background-color: snow;
+    position: absolute;
+    width:250px;
+    height:30px;
+    max-height: 200px;
+    overflow-y: visible;
+    padding-left: 12px;
+    z-index: 99999999;
+  
+  }
+
+.like {
+    cursor:pointer;
+}
+.like:hover{
+    text-decoration: underline;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.list-group-item-action:hover{
+    background-color: lightcyan;
+}
+
+/* search field */
+#searchfield{
+    animation-name: showbar;
+    animation-duration:1s;
+    animation-play-state: paused;
+    animation-fill-mode: forwards;
+    cursor: default;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    
+}
+
+#searchfield:focus{
+    border-bottom-left-radius: 0px;
+}
+
+
+/*searchform div in which both the button and the field are wrapped*/
+#searchform{
+    margin-top: 15px;
+}
+
+
 .post{
     border: 1px solid lightgray;
     border-radius: 5px;
+    margin-top: 10px;
 }
 
 @keyframes showpost {
@@ -40,6 +109,28 @@
     }
     to {
         height:0px;
+        opacity:0;
+    }
+}
+
+@keyframes showbar {
+    from {
+        width: 26px;
+        opacity:0;
+    }
+    to {
+        width: 250px;
+        opacity:1;
+    }
+}
+
+@keyframes hidebar {
+    from {
+        width: 250px;
+        opacity:1;
+    }
+    to {
+        width:26px;
         opacity:0;
     }
 }

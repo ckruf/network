@@ -1,0 +1,20 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+
+<div class="row justify-content-center">
+    <div class="col-4">
+        <h1><a href="/user/{{profileowner.profileurl}}">@{{profileowner.username}}</a></h1>
+    </div>
+</div>
+    {% for post in posts %}
+        <div class="row justify-content-center">
+            <div class="col-4 post" id="post{{ post.id }}">
+                <p class="postauthor"><strong>{{ post.author }}</strong></p>
+                <p class="posttime">Posted on {{ post.created }}</p>
+                <p class="postcontent">{{ post.content }}</p>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}

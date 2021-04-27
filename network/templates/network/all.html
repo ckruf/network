@@ -8,6 +8,17 @@
                 <p class="postauthor"><strong>{{ post.author }}</strong></p>
                 <p class="posttime">Posted on {{ post.created }}</p>
                 <p class="postcontent">{{ post.content }}</p>
+                {% if post.liked %}
+                <span class="like text-primary" id="like{{ post.id }}">Unlike</span>
+                {% else %}
+                <span class="like text-primary" id="like{{ post.id }}">Like</span> 
+                {% endif %}
+                <a href='#'>Comment</a>
+                {% if post.likes.count == 1 %}
+                <div id="likecount{{ post.id }}">{{ post.likes.count }} like</div>
+                {% else %}
+                <div id="likecount{{ post.id }}">{{ post.likes.count }} likes</div>
+                {% endif %}
             </div>
         </div>
     {% endfor %}

@@ -4,7 +4,14 @@ from django.forms import ModelForm, Textarea, TextInput, CharField
 
 
 class User(AbstractUser):
-    pass
+    profileurl = models.CharField(max_length=32, blank=False, unique=True)
+    bio = models.TextField(max_length=140, blank=True)
+
+    def serialize(self):
+        return {
+            "username":self.username,
+            "profileURL":self.profileurl
+        }
 
 class Post(models.Model):
     content = models.CharField(max_length=140)

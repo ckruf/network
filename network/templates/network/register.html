@@ -8,13 +8,16 @@
         <div>{{ message }}</div>
     {% endif %}
 
-    <form action="{% url 'register' %}" method="post">
+    <form action="{% url 'register' %}" method="post" name="registrationform" onsubmit="return validateForm()">
         {% csrf_token %}
         <div class="form-group">
             <input class="form-control" autofocus type="text" name="username" placeholder="Username">
         </div>
         <div class="form-group">
             <input class="form-control" type="email" name="email" placeholder="Email Address">
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="profileurl" placeholder="Your profile's URL">
         </div>
         <div class="form-group">
             <input class="form-control" type="password" name="password" placeholder="Password">
@@ -26,5 +29,20 @@
     </form>
 
     Already have an account? <a href="{% url 'login' %}">Log In here.</a>
+
+    <script>
+        function validateForm() {
+            var profileurl = document.forms["registrationform"]["profileurl"].value;
+            var patt = /[^a-z0-9]/;
+            if (patt.test(profileurl)) {
+                alert("URL must only contain lower case letters and numbers");
+                return false;
+            }
+            if (profileurl === "") {
+                alert("URL must not be blank");
+                return false;
+            } 
+        }
+    </script>
 
 {% endblock %}
